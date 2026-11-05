@@ -1,0 +1,72 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: soporte-tickets
+
+  datasource:
+  #  url: jdbc:postgresql://localhost:5432/soporte_tickets
+  #  username: postgres
+  #  password: Ventu.2025
+    url: jdbc:postgresql://localhost:5432/ticket-db
+    username: usrticket
+    password: Secreto123
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    open-in-view: false
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:tecnologias.ssypc@morelos.gob.mx}
+    password: ${MAIL_PASSWORD:TorreMorelos2026}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        debug: false
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 50MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:VGhpcyBpcyBhIHZlcnkgbG9uZyBzZWNyZXQga2V5IGZvciBKV1QgdG9rZW4gc2lnbmluZyBpbiBTcHJpbmcgQm9vdA==}
+    expiration: 86400000       # 24 hours in ms
+    refresh-expiration: 604800000  # 7 days in ms
+
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:3000,http://localhost,http://localhost:80
+
+  upload:
+    path: ${UPLOAD_PATH:/app/ventus/uploads}
+    max-size-mb: 10
+    allowed-types: image/jpeg,image/jpg,image/png,image/webp
+
+  frontend-url: ${FRONTEND_URL:http://localhost:5173}
+
+logging:
+  level:
+    com.soporte: DEBUG
+    org.springframework.security: INFO

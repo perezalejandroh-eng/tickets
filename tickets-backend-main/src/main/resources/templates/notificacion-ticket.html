@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Notificación Ticket</title>
+<style>
+  body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:0}
+  .container{max-width:600px;margin:30px auto;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+  .header{background:#2d5016;padding:24px;text-align:center}
+  .header h1{color:#fff;margin:0;font-size:22px}
+  .body{padding:32px}
+  .folio{background:#f0f4e8;border-left:4px solid #4a7c23;padding:12px 16px;border-radius:4px;margin:16px 0}
+  .folio strong{color:#2d5016;font-size:18px}
+  .btn{display:inline-block;background:#4a7c23;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;margin:16px 0}
+  .footer{background:#2d5016;padding:16px;text-align:center;color:#ccc;font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Soporte TI</h1></div>
+  <div class="body">
+    <p>Hola <strong th:text="${nombre}">Usuario</strong>,</p>
+    <p th:text="${mensaje}">Mensaje de notificación.</p>
+    <div class="folio">
+      <strong th:text="${folio}">TKT-000001</strong>
+      <span> — </span>
+      <span th:text="${asunto}">Asunto del ticket</span>
+    </div>
+    <a th:href="${urlTicket}" class="btn">Ver ticket</a>
+  </div>
+  <div class="footer">Sistema de Soporte TI &copy; 2025</div>
+</div>
+</body>
+</html>
